@@ -163,7 +163,6 @@ In this system architecture, there are two pumps (P1 and P2) operating in separa
 <img width="411" height="365" alt="10-3" src="https://github.com/user-attachments/assets/30f731b8-7563-48bc-91f0-d0719ced0714" />
 <br><br>
 <img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/dbcb2b6e-cdc9-47c7-9dd5-03156b02c5bd" />
-<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/c81d8b69-ce7b-4c6e-84bc-abe88931cb64" />
 
 
 ## 04. Compressor
