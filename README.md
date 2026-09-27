@@ -151,7 +151,7 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 <br><br>
 ## 03. Pumps
 
-This section models pumps with constant volumetric displacement that supply mechanical energy to fluid networks. It accounts for losses due to leakage flow and friction torque. The pump may operate in both the forward and reverse directions depending on the rotation of the shaft. It may also operate as a motor that drives the shaft.
+This section models pumps with constant volumetric displacement that supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions, depending on the shaft rotation, and can also operate in motor mode to drive the shaft.
 
 In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger. 
 
