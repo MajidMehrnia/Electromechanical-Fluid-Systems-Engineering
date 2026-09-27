@@ -153,16 +153,18 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 
 In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named battery pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger, whereas P2 (here named motor pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop.
 
-<img width="574" height="395" alt="10-1" src="https://github.com/user-attachments/assets/87c98869-8c0a-47ee-baa5-552b42e69527" />
-<br><br>
-<img width="411" height="365" alt="10-3" src="https://github.com/user-attachments/assets/dd6b94e0-6a8f-496c-83df-5812063b3fa8" />
-<br><br>
-<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/dbcb2b6e-cdc9-47c7-9dd5-03156b02c5bd" />
-
 | Pump | Primary Thermal Loop | Main Function |
 | :--- | :--- | :--- |
 | **P1** | Battery, DCDC & Charger | Precise temperature control for high-voltage battery safety and battery lifespan |
 | **P2** | Electric Motor & Chiller | Heat dissipation for the electric powertrain and refrigerant-to-coolant heat exchange |
+<br><br>
+<img width="574" height="395" alt="10-1" src="https://github.com/user-attachments/assets/c436e237-76f3-4340-a98d-571da6f7c832" />
+<br><br>
+<img width="411" height="365" alt="10-3" src="https://github.com/user-attachments/assets/30f731b8-7563-48bc-91f0-d0719ced0714" />
+<br><br>
+<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/dbcb2b6e-cdc9-47c7-9dd5-03156b02c5bd" />
+<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/c81d8b69-ce7b-4c6e-84bc-abe88931cb64" />
+
 
 ## 04. Compressor
 
