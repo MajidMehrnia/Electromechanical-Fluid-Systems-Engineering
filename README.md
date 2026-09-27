@@ -1,9 +1,8 @@
-# Electromechanical Systems Engineering
+# Electromechanical Fluid Systems Engineering
 
 ## Description
 
-This repository supports a New Product Development (NPD) program focused on the design, dynamic modeling, performance analysis, and optimization of coupled electromechanical, rotating, and thermo-fluid components for an electric vehicle thermal-management system. The work integrates **electric drives, motors, pumps, blowers, and thermal-fluid circuits coupled with a scroll compressor** to evaluate system-level performance, efficiency, and reliability.
-
+This repository supports a New Product Development (NPD) program focused on the design, dynamic modeling, performance analysis, and optimization of coupled electromechanical, rotating, and thermo-fluid components for an electric vehicle thermal-management system. The work integrates **motor & drive system, pumps, compressor, and electrical and fluid circuits** to assess system-level performance, efficiency, and reliability.
 
 
 A key objective of this work is to develop an **[AI-Enabled Engineering Value & Optimization Platform](#ai-enabled-engineering-value--optimization-platform)** for the design and optimization of a system across a broad range of electrical and mechanical configurations, enabling data-driven engineering decision-making, **optimized cost positioning**, and engineering-to-supply-chain scenario analysis. The platform explores how engineering data and component demand signals can support cost, demand, capacity, and supply-chain optimization, with potential integration into enterprise planning environments such as Kinaxis Maestro.
