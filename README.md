@@ -14,14 +14,12 @@ A key objective of this work is to develop an **[AI-Enabled Engineering Value & 
 2. [Motor & Drive](#02-motor--drive)
 3. [Pumps](#03-pumps)
 4. [Compressor](#04-compressor)
-  * [Map-Based Simulation](#map-based-simulation)
-  * [3D-to-1D Model](#3d-to-1d-model)
-6. [Control](#05-control)  
-7. [Electro-Thermal Co-Simulation](#06-electro-thermal-co-simulation)
-8. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
-9. [AI/ML Modeling](#08-aiml-modeling)
-10. [NPI Flowchart](#09-npi-flowchart)
-11. [Results](#10-results)
+5. [Control](#05-control)  
+6. [Electro-Thermal Co-Simulation](#06-electro-thermal-co-simulation)
+7. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
+8. [AI/ML Modeling](#08-aiml-modeling)
+9. [NPI Flowchart](#09-npi-flowchart)
+10. [Results](#10-results)
 
    
 ## 01. System Architecture
@@ -153,10 +151,13 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 <br><br>
 ## 03. Pumps
 
-In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 provides thermal conditioning for the battery pack, DCDC converter, and onboard charger, whereas P2 regulates the temperature of the electric motor and interfaces directly with the chiller loop.
+In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named battery pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger, whereas P2 (here named motor pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop.
 
-<img width="589" height="216" alt="image" src="https://github.com/user-attachments/assets/fb3b6662-22fe-4b3e-a7fa-6afa6d319eac" />
-
+<img width="574" height="395" alt="10-1" src="https://github.com/user-attachments/assets/87c98869-8c0a-47ee-baa5-552b42e69527" />
+<br><br>
+<img width="411" height="365" alt="10-3" src="https://github.com/user-attachments/assets/dd6b94e0-6a8f-496c-83df-5812063b3fa8" />
+<br><br>
+<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/dbcb2b6e-cdc9-47c7-9dd5-03156b02c5bd" />
 
 | Pump | Primary Thermal Loop | Main Function |
 | :--- | :--- | :--- |
