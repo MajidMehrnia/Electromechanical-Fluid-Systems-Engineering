@@ -157,6 +157,7 @@ In this system architecture, there are two pumps (P1 and P2) operating in separa
 | :--- | :--- | :--- |
 | **P1** | Battery, DCDC & Charger | Precise temperature control for high-voltage battery safety and battery lifespan |
 | **P2** | Electric Motor & Chiller | Heat dissipation for the electric powertrain and refrigerant-to-coolant heat exchange |
+
 <br><br>
 <img width="574" height="395" alt="10-1" src="https://github.com/user-attachments/assets/c436e237-76f3-4340-a98d-571da6f7c832" />
 <br><br>
