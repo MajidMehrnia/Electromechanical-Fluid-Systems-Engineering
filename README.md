@@ -14,12 +14,14 @@ A key objective of this work is to develop an **[AI-Enabled Engineering Value & 
 2. [Motor & Drive](#02-motor--drive)
 3. [Pumps](#03-pumps)
 4. [Compressor](#04-compressor)
-5. [Control & Embedded Firmware Development](#05-control--embedded-firmware-development)  
-6. [Electro-Thermal Co-Simulation](#06-electro-thermal-co-simulation)
-7. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
-8. [AI/ML Modeling](#08-aiml-modeling)
-9. [NPI Flowchart](#09-npi-flowchart)
-10. [Results](#10-results)
+  * [Map-Based Simulation](#map-based-simulation)
+  * [3D-to-1D Model](#3d-to-1d-model)
+6. [Control](#05-control)  
+7. [Electro-Thermal Co-Simulation](#06-electro-thermal-co-simulation)
+8. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
+9. [AI/ML Modeling](#08-aiml-modeling)
+10. [NPI Flowchart](#09-npi-flowchart)
+11. [Results](#10-results)
 
    
 ## 01. System Architecture
@@ -163,18 +165,19 @@ In this system architecture, there are two pumps (P1 and P2) operating in separa
 
 ## 04. Compressor
 
-### Compressor Subsystem
-
-The compressor drives the flow in the refrigerant loop. Instead of using a map-based compressor model commonly found in system simulations, a higher-fidelity, geometry-based 3D-to-1D discretized compressor model developed in GT-SUITE is integrated to achieve significantly higher accuracy and physical reliability.
-
-### 3D-to-1D Discretized Scroll Compressor Model
+### Map-Based Simulation
+The system uses a scroll compressor, initially represented by a map-based compressor model in MATLAB/Simulink for system-level simulation. To achieve higher modeling fidelity and physical accuracy, a geometry-based, 3D-to-1D discretized compressor model developed in GT-SUITE is integrated to capture the compressor's detailed thermodynamic and flow behavior.
+<br><br>
+<img width="959" height="396" alt="10-4" src="https://github.com/user-attachments/assets/82d276cb-6bce-4278-b26a-df1187fd0e72" />
+<br><br>
+### 3D-to-1D Model
 This model implements a detailed 3D-to-1D discretized multi-chamber approach directly derived from 3D CAD scroll geometry rather than relying on empirical performance maps. The physical compression volume between the stationary and orbiting scrolls is discretized into discrete transient pockets (Chambers 1a–4a and 1b–4b) whose volume and porting areas dynamically evolve as a function of the orbital angle. By explicitly resolving flank and radial leakage paths between adjacent chambers, the model accurately predicts internal recirculation losses, thermal interactions, and discharge valve dynamics with high fidelity while maintaining 1D computational efficiency.
 <img width="856" height="500" alt="GT_Scroll" src="https://github.com/user-attachments/assets/f7d13a90-0bb6-4a4a-8dc9-9b23ac900a69" />
 <br><br>
 <img width="1280" height="599" alt="image" src="https://github.com/user-attachments/assets/39f0f387-08ca-4539-a389-9196e504ae7d" />
 
 
-## 05. Control & Embedded Firmware Development
+## 05. Control 
 The control architecture is designed to enable precise motor control, dynamic load tracking, and integrated electro-thermal system management.
 
 * **Electric Motor & Motion Control:** Executes speed and torque command generation ($T_{cmd}$) based on driver demand ($VehSpdRef$), enabling dynamic load regulation, precise motion tracking, and transient torque control for the electric drive unit.
