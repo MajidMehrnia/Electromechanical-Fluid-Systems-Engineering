@@ -171,7 +171,7 @@ The system uses a scroll compressor, initially represented by a map-based compre
 <br><br>
 <img width="959" height="396" alt="10-4" src="https://github.com/user-attachments/assets/82d276cb-6bce-4278-b26a-df1187fd0e72" />
 <br><br>
-### 3D-to-1D Model
+### 3D-to-1D Scroll Compressor Model
 This model implements a detailed 3D-to-1D discretized multi-chamber approach directly derived from 3D CAD scroll geometry rather than relying on empirical performance maps. The physical compression volume between the stationary and orbiting scrolls is discretized into discrete transient pockets (Chambers 1a–4a and 1b–4b) whose volume and porting areas dynamically evolve as a function of the orbital angle. By explicitly resolving flank and radial leakage paths between adjacent chambers, the model accurately predicts internal recirculation losses, thermal interactions, and discharge valve dynamics with high fidelity while maintaining 1D computational efficiency.
 <img width="856" height="500" alt="GT_Scroll" src="https://github.com/user-attachments/assets/f7d13a90-0bb6-4a4a-8dc9-9b23ac900a69" />
 <br><br>
