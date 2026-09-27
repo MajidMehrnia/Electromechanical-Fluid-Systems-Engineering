@@ -15,7 +15,7 @@ A key objective of this work is to develop an **[AI-Enabled Engineering Value & 
 3. [Pumps](#03-pumps)
 4. [Compressor](#04-compressor)
 5. [Control](#05-control)  
-6. [Electro-Thermal Co-Simulation](#06-electro-thermal-co-simulation)
+6. [Fluid-Electromechanical Co-simulation ](#06-fluid-electromechanical-co-simulation)
 7. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
 8. [AI/ML Modeling](#08-aiml-modeling)
 9. [NPI Flowchart](#09-npi-flowchart)
@@ -407,7 +407,7 @@ The embedded firmware layer complements the model-based EV system study by provi
 * Embedded-to-system engineering traceability
 <br><br>
 
-## 06. Electro-Thermal Co-Simulation
+## 06. Fluid-Electromechanical Co-simulation 
 This GT-SUITE sub-model captures the detailed 1D thermal-fluid dynamics of the refrigerant compressor loop co-simulated directly with Simulink. The circuit models two-phase refrigerant flow through inlet and outlet piping (`PipeRound`) connected between environmental boundary conditions and the compressor unit. Rotational speed commands and boundary states are dynamically exchanged with the Simulink control model via dedicated co-simulation interface ports. A specialized initialization block (`RefrigCircInit`) establishes state convergence for the refrigerant loop to ensure stable transient simulation during vehicle operational cycles.
 <br><br>
 <img width="1280" height="542" alt="GT-SUITE_blocks" src="https://github.com/user-attachments/assets/6f010da7-290a-4381-9ed3-0ad721b30cfa" />
