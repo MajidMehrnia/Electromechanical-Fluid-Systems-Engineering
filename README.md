@@ -151,27 +151,28 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 <br><br>
 ## 03. Pumps
 
-In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named battery pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger, whereas P2 (here named motor pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop.
+This section models a pump with constant volumetric displacement that supplies mechanical energy to a fluid network. It accounts for losses due to leakage flow and friction torque. The pump may operate in both the forward and reverse directions depending on the rotation of the shaft. It may also operate as a motor that drives the shaft.
+
+In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger. 
 
 | Pump | Primary Thermal Loop | Main Function |
 | :--- | :--- | :--- |
-| **P1** | Battery, DCDC & Charger | Precise temperature control for high-voltage battery safety and battery lifespan |
-| **P2** | Electric Motor & Chiller | Heat dissipation for the electric powertrain and refrigerant-to-coolant heat exchange |
+| **P1** | Electric Motor & Chiller | Heat dissipation for the electric powertrain and refrigerant-to-coolant heat exchange |
+| **P2** | Battery, DCDC & Charger | Precise temperature control for high-voltage battery safety and battery lifespan |
 
 <br><br>
-<img width="574" height="395" alt="10-1" src="https://github.com/user-attachments/assets/c436e237-76f3-4340-a98d-571da6f7c832" />
+<img width="1918" height="790" alt="2" src="https://github.com/user-attachments/assets/376934e7-c871-4515-886c-032d30472187" />
 <br><br>
-<img width="411" height="365" alt="10-3" src="https://github.com/user-attachments/assets/30f731b8-7563-48bc-91f0-d0719ced0714" />
+<img width="828" height="720" alt="3" src="https://github.com/user-attachments/assets/c5c2afe3-15fa-46e3-88a1-ba33747cdcd2" />
 <br><br>
-<img width="572" height="398" alt="10-2" src="https://github.com/user-attachments/assets/dbcb2b6e-cdc9-47c7-9dd5-03156b02c5bd" />
-
+<img width="1918" height="796" alt="4" src="https://github.com/user-attachments/assets/41b28fa7-6449-4682-abf6-cbea48ab5d20" />
 
 ## 04. Compressor
 
 ### Map-Based Simulation
 The system uses a scroll compressor, initially represented by a map-based compressor model in MATLAB/Simulink for system-level simulation. To achieve higher modeling fidelity and physical accuracy, a geometry-based, 3D-to-1D discretized compressor model developed in GT-SUITE is integrated to capture the compressor's detailed thermodynamic and flow behavior.
 <br><br>
-<img width="959" height="396" alt="10-4" src="https://github.com/user-attachments/assets/82d276cb-6bce-4278-b26a-df1187fd0e72" />
+<img width="1918" height="799" alt="1" src="https://github.com/user-attachments/assets/9ee1f1d5-bd09-4db4-8c6a-d1a2df495bec" />
 <br><br>
 ### 3D-to-1D Scroll Compressor Model
 This model implements a detailed 3D-to-1D discretized multi-chamber approach directly derived from 3D CAD scroll geometry rather than relying on empirical performance maps. The physical compression volume between the stationary and orbiting scrolls is discretized into discrete transient pockets (Chambers 1a–4a and 1b–4b) whose volume and porting areas dynamically evolve as a function of the orbital angle. By explicitly resolving flank and radial leakage paths between adjacent chambers, the model accurately predicts internal recirculation losses, thermal interactions, and discharge valve dynamics with high fidelity while maintaining 1D computational efficiency.
