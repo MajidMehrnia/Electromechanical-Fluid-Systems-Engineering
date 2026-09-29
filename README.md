@@ -204,7 +204,7 @@ High physical fidelity due to direct, linear coupling between drive speed and di
 
 ### 3.2.2. Reciprocating & Variable-Displacement Positive-Displacement Pumps
 
-**Piston Pump | Diaphragm Pump | Swashplate Axial Piston Pump**
+**Piston Pump | Diaphragm Pump | Linear Pump | Swashplate Axial Piston Pump**
 
 ### V. Piston Pump (Reciprocating / Axially Driven)
 * **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
@@ -217,7 +217,10 @@ High physical fidelity due to direct, linear coupling between drive speed and di
 * **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
 * **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
 
-### VII. Swashplate Axial Piston Pump (Variable Displacement)
+### VII.Linear Pump (Linear Diaphragm / Electromagnetic Drive):
+Couples an AC electromagnetic drive using a `Reluctance Actuator` or `Translational Electromechanical Transducer` directly to a diaphragm chamber, bypassing rotational mechanical links.
+
+### VIII. Swashplate Axial Piston Pump (Variable Displacement)
 * **Swashplate Kinematics:** Models piston stroke length as a function of swashplate tilt angle $(V_d = f(\alpha))$ using coupled `Rotary-to-Linear` transducers.
 * **Pressure-Compensated Control:** Integrates a pilot-operated hydraulic control loop to dynamically vary swashplate orientation for system pressure regulation.
 
@@ -229,11 +232,9 @@ Reciprocating check valve dynamics, fluid compressibility ($K$), and pressure/fl
 
 ---
 
-### 3.2.3. Centrifugal Pumps
+### 3.2.3. Dynamic Pumps
 
-**Electrically Driven Centrifugal Pump**
-
-### VIII. Centrifugal Pump (Impeller / Dynamic BLDC)
+### IX. Centrifugal Pump (Impeller / Dynamic BLDC)
 * **Electromechanical Coupling:** Connects an `Electric Motor` (e.g., PMSM or BLDC drive) to the rotating pump shaft via a `Rotational Hydromechanical Transducer` to couple electrical, rotational mechanical, and fluid domains.
 * **Torque-to-Pressure Dynamics:** Models fluid resistance torque ($T_m$) as a function of angular velocity ($\omega$) and volumetric flow rate ($Q$):
   $$T_m = f(\omega, Q)$$
