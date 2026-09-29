@@ -151,15 +151,15 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 <br><br>
 ## 03. Pumps
 
-This section models pumps with constant volumetric displacement that supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions, depending on the shaft rotation, and can also operate in motor mode to drive the shaft.
+This section models BLDC Electric Water Pumps used in electric vehicle thermal management systems to supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions depending on shaft rotation, and can also operate in motor mode to drive the shaft.
 
-# Modeling Positive Displacement Pumps in Simscape 
+---
+## Modeling Positive Displacement Pumps
 
-Simscape (specifically using **Simscape Fluids**) enables high-fidelity physical modeling and simulation of various pump architectures, including positive displacement pumps such as **Piston Pumps** and **Diaphragm Pumps**.
+Simscape (specifically using Simscape Fluids) enables high-fidelity physical modeling and simulation of various pump architectures, including positive displacement pumps such as **Piston Pumps** and **Diaphragm Pumps**.
 
 Depending on the engineering requirements, two primary modeling approaches can be applied in MATLAB/Simscape:
 
----
 
 ## 3.1. Data-Driven Modeling
 
@@ -172,7 +172,6 @@ This approach is recommended when high-level system performance, efficiency, or 
   * Mechanical/Overall efficiency ($\eta_m$)
 * **Use Cases:** System-level hydraulic simulations, thermal-hydraulic balancing, controller design, and steady-state pressure/flow estimation without the computational overhead of dynamic valve cycling.
 
----
 
 ## 3.2. Physical & Structural (Component-Level) Modeling
 
