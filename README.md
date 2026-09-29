@@ -157,9 +157,6 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 
 This section models BLDC Electric Water Pumps used in electric vehicle thermal management systems to supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions depending on shaft rotation, and can also operate in motor mode to drive the shaft.
 
----
-## Modeling Positive Displacement Pumps
-
 Depending on the engineering requirements, two primary modeling approaches can be applied here:
 
 
@@ -178,13 +175,12 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 ## 3.2. Physical Pump Modeling
 
-The modeling framework represents **eight pump architectures** using **Simscape Fluids components and custom physical subsystems** across three primary classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture both steady-state performance and transient system behavior.
+The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture system behavior.
 
-Model parameters are calibrated and validated against available experimental test-rig measurements across the defined operating envelope.
 
 ---
 
-## I. Fixed-Displacement Positive-Displacement Pumps
+## I. Fixed Positive Displacement Pumps
 
 **Gear Pump | Rotary Vane Pump | Screw Pump | Peristaltic Pump**
 
