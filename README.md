@@ -178,39 +178,83 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 ## 3.2. Physical Pump Modeling
 
-This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress. All pump architectures are implemented in Simscape Fluids across three primary classification groups, with dynamic fidelity validated against experimental test data:
+The modeling framework represents **eight pump architectures** using **Simscape Fluids components and custom physical subsystems** across three primary classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture both steady-state performance and transient system behavior.
+
+Model parameters are calibrated and validated against available experimental test-rig measurements across the defined operating envelope.
 
 ---
 
-### I. Fixed Positive Displacement Pumps (Gear, Rotary Vane, Screw, Peristaltic)
-* **Gear Pump:** Uses paired `Rotary Hydro-Mechanical Transducer` blocks for gear-meshing volumetric displacement and `Hydraulic Gap` elements for radial/axial clearance leakage.
-* **Rotary Vane Pump:** Combines a `Rotational Hydro-Mechanical Transducer` with a `Variable Hydraulic Chamber` to model volume variation of sliding vanes in an eccentric stator.
-* **Screw Pump:** Uses `Rotary Hydro-Mechanical Transducer` elements for continuous fluid progression along helical screws with viscosity-dependent `Capillary Tube` leakage.
-* **Peristaltic Pump:** Simulates roller squeezing via `Cam and Follower` / `Rotary to Linear Motion` paired with a `Variable Hydraulic Chamber` and `Translational Spring-Damper` for hose elasticity and occlusion.
-* **Validation & Accuracy:**
-  * **Steady-State Accuracy:** **95% – 98%** (2% – 5% relative error).
-  * **Transient Accuracy:** **92% – 97%** (3% – 8% relative error).
-  * **Validation Details:** High physical fidelity due to direct, linear coupling between drive speed and displacement volume ($V_g$). Primary error sources stem from internal clearance leakages at high operational pressures, compensated using empirical leakage coefficients.
+## I. Fixed-Displacement Positive-Displacement Pumps
 
-### II. Reciprocating & Variable Displacement Pumps (Piston, Diaphragm, Swashplate Axial Piston)
-* **Piston Pump:** Converts drive torque to stroke using `Rotary to Linear Motion` connected to a `Translational Hydromechanical Actuator`, with `Check Valve` blocks governing fluid direction:
-  $$V(t) = V_0 + A_p \cdot x(t)$$
-* **Diaphragm Pump:** Maps actuator displacement to fluid volume via a `Translational Hydro-Mechanical Transducer` (accounting for diaphragm stiffness) bounded by inlet/outlet `Check Valve` blocks.
-* **Swashplate Axial Piston Pump:** Models stroke variation as a function of tilt angle ($V_d = f(\alpha)$) via `Rotary-to-Linear` transducers integrated with a pressure-compensated control loop.
-* **Validation & Accuracy:**
-  * **Steady-State Accuracy:** **93% – 97%** (3% – 7% relative error).
-  * **Transient Accuracy:** **85% – 92%** (8% – 15% relative error).
-  * **Validation Details:** Reciprocating check valve dynamics, fluid compressibility ($K$), and pressure/flow ripple introduce dynamic non-linearities during stroke transitions. For Swashplate architectures, transient fidelity depends heavily on pilot control valve tuning.
+**Gear Pump | Rotary Vane Pump| Screw Pump | Peristaltic Pump**
 
-### III. Dynamic & Centrifugal Pumps (Centrifugal BLDC)
-* **Electromechanical Coupling:** Connects a drive motor (e.g., PMSM or BLDC) to the impeller shaft via a `Rotational Hydromechanical Transducer`.
-* **Torque-to-Pressure Dynamics:** Models fluid resistance torque ($T_m$) as a function of angular velocity ($\omega$) and flow rate ($Q$):
-  $$T_m = f(\omega, Q)$$
-* **Volute & Impeller Losses:** Uses `Local Resistance` and hydraulic pipe elements to capture volute casing pressure drop and dynamic flow friction.
-* **Validation & Accuracy:**
-  * **Steady-State Accuracy:** **90% – 96%** (4% – 10% relative error based on $H-Q$ and $\eta-Q$ curves).
-  * **Transient Accuracy:** **85% – 90%** (10% – 15% relative error).
-  * **Validation Details:** Highly accurate (>95%) near nominal operating points when driven by empirical pump performance maps. Accuracy degrades slightly at extreme off-design conditions (near stall or choke regions) where 1D lumped-parameter assumptions reach structural limits.
+### َA. Gear Pump (External / Internal)
+* **Gear Meshing Mechanism:** Uses paired `Rotary Hydro-Mechanical Transducer` (or `Rotary Hydromechanical Actuator`) blocks to model the volumetric displacement of gear meshing and trapped clearance volumes.
+* **Inter-Gear Leakage:** Uses `Hydraulic Gap` or `Capillary Tube` blocks to model radial and axial tip clearance leakages dependent on fluid viscosity and differential pressure.
+
+### B. Rotary Vane Pump (Eccentric Rotor / Sliding Vanes)
+* **Eccentric Chamber Dynamics:** Combines a `Rotational Hydro-Mechanical Transducer` with a `Variable Hydraulic Chamber` to model volume variation of sliding vanes rotating inside an eccentric stator ring.
+* **Vane Tip Clearance & Sealing:** Incorporates `Hydraulic Gap` elements to model dynamic leakage across sliding vane tips and side plates under centrifugal force and mechanical spring pre-loads.
+
+### C. Screw Pump (Twin-Screw / Helical Rotor)
+* **Helical Volume Engagement:** Uses `Rotary Hydro-Mechanical Transducer` elements to capture continuous, pulse-free volumetric fluid progression along intermeshing helical screws.
+* **Inter-Thread Leakage:** Models internal slip and clearance backflow using viscosity-dependent `Capillary Tube` and `Hydraulic Gap` blocks.
+
+* ### D. Peristaltic Pump (Roller / Flexible Hose)
+* **Cam/Roller Mechanism:** Combines `Rotary to Linear Motion` or `Cam and Follower` blocks to simulate the mechanical squeezing force exerted by rollers on the flexible hose.
+* **Flexible Tube Modeling:** Uses a `Variable Hydraulic Chamber` coupled with `Translational Spring` and `Translational Damper` blocks to capture hose elasticity, structural recovery, and dynamic deformation.
+* **Occlusion Behavior:** Models full or partial tube cross-section squeezing to simulate dynamic suction and non-backflow seals under roller pressure.
+
+**Validation**
+
+Steady-state pressure-flow and torque-speed characteristics are compared against experimental measurements. Model performance is quantified using normalized error metrics over the defined operating envelope.
+
+---
+
+### II. Reciprocating & Variable-Displacement Positive-Displacement Pumps
+
+**Piston | Diaphragm | Swashplate Axial Piston**
+
+| Pump Architecture | Physical Modeling Approach |
+|---|---|
+| **Piston Pump** | Converts rotary motion into reciprocating piston displacement. Chamber volume is represented as \(V(t)=V_0+A_p x(t)\), with instantaneous flow approximately related to piston velocity by \(Q(t)=A_p\dot{x}(t)\), subject to leakage, compressibility, and check-valve dynamics. |
+| **Diaphragm Pump** | Models diaphragm displacement and chamber-volume variation with inlet/outlet check-valve dynamics and diaphragm compliance. |
+| **Swashplate Axial Piston Pump** | Models variable piston stroke as a function of swashplate angle, \(V_d=f(\alpha)\), with displacement control coupled to the hydraulic operating condition. |
+
+**Validation**
+
+Transient behavior is evaluated against measured pressure/flow ripple, piston-cycle response, and steady-state operating points where experimental data are available.
+
+---
+
+### III. Dynamic & Centrifugal Pumps
+
+**Electrically Driven Centrifugal Pump**
+
+| Modeling Aspect | Physical Modeling Approach |
+|---|---|
+| **Electromechanical Coupling** | Couples a **BLDC/PMSM drive model** to the pump shaft to capture motor speed, torque, and hydraulic-load interaction. |
+| **Pump Performance** | Represents pressure rise and hydraulic torque as functions of flow rate and shaft speed: \(\Delta p=f(Q,\omega)\), \(T_{hyd}=f(Q,\omega)\). |
+| **Performance Maps** | Parameterizes the pump using measured or manufacturer-provided \(H-Q\), power-flow, and efficiency characteristics. |
+| **Hydraulic Losses** | Uses calibrated hydraulic resistance and pipe elements to represent system-level pressure losses and flow resistance. |
+
+**Validation**
+
+Steady-state validation is performed against measured \(H-Q\), torque-speed, and efficiency characteristics. Transient validation evaluates the response to speed commands, hydraulic-load changes, and system-level flow/pressure dynamics.
+
+---
+
+### Model Validation Framework
+
+| Validation Dimension | Primary Metrics |
+|---|---|
+| **Steady-State** | Pressure / head, flow rate, torque, efficiency |
+| **Transient** | Pressure response, flow ripple, speed response, torque response |
+| **Operating Envelope** | Nominal, partial-load, high-load and off-design conditions |
+| **Calibration Parameters** | Leakage, hydraulic resistance, compliance, inertia, actuator/control parameters |
+| **Reference Data** | Experimental test-rig measurements and validated pump performance maps |
+
+> **Modeling Principle:** Physical fidelity is prioritized through conservation-based hydraulic modeling, explicit mechanical coupling, calibrated loss mechanisms, and validation against available experimental data rather than relying solely on idealized pump characteristics.
 
 ---
 
