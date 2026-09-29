@@ -153,7 +153,57 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 
 This section models pumps with constant volumetric displacement that supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions, depending on the shaft rotation, and can also operate in motor mode to drive the shaft.
 
-In this system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger. 
+# Modeling Positive Displacement Pumps in Simscape 
+
+Simscape (specifically using **Simscape Fluids**) enables high-fidelity physical modeling and simulation of various pump architectures, including positive displacement pumps such as **Piston Pumps** and **Diaphragm Pumps**.
+
+Depending on the engineering requirements, two primary modeling approaches can be applied in MATLAB/Simscape:
+
+---
+
+## 3.1. Data-Driven Modeling
+
+This approach is recommended when high-level system performance, efficiency, or control loop testing is the primary objective, without requiring inner mechanical dynamics.
+
+* **Key Block:** `Positive Displacement Pump` (or `Fixed Displacement Pump` / `Variable Displacement Pump`).
+* **Core Parameters:**
+  * Displacement volume per revolution ($D_p$)
+  * Volumetric efficiency ($\eta_v$)
+  * Mechanical/Overall efficiency ($\eta_m$)
+* **Use Cases:** System-level hydraulic simulations, thermal-hydraulic balancing, controller design, and steady-state pressure/flow estimation without the computational overhead of dynamic valve cycling.
+
+---
+
+## 3.2. Physical & Structural (Component-Level) Modeling
+
+This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress.
+
+### A. Piston Pump (Reciprocating / Axially Driven)
+Constructed by coupling mechanical and hydro-mechanical domains:
+* **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
+* **Valving:** Two `Check Valve` blocks serving as Suction (Inlet) and Discharge (Outlet) check valves with defined cracking pressure and discharge coefficients.
+* **Displacement Chamber:** `Variable Hydraulic Chamber` (or `Translational Hydro-Mechanical Transducer`) to continuously evaluate fluid volume changes relative to piston stroke position:
+  $$V(t) = V_0 + A_p \cdot x(t)$$
+
+### B. Diaphragm Pump (Air-Operated / Mechanically Driven)
+Constructed by modeling the flexible diaphragm interface and fluid chamber:
+* **Actuation System:** Pneumatic cylinder (`Pneumatic Actuator`), mechanical cam, or electromechanical solenoid supplying displacement force to the diaphragm.
+* **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping the diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
+* **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
+
+---
+
+## Advanced Physical Effects & Phenomena Supported
+
+Simscape Fluids accounts for complex fluid dynamics and non-linearities:
+
+* **Cavitation & Aeration:** Evaluates vapor formation, trapped gas dynamics, and suction line pressure drop effects.
+* **Pressure & Flow Ripple:** Captures transient pulsations caused by discrete reciprocating stroke cycles.
+* **Fluid Compressibility:** Models dynamic bulk modulus ($K$) variation dependent on pressure, temperature, and entrained air fraction.
+* **Internal & External Leakage:** Incorporates clearance-based gap leakage models across pistons, seals, and valve seats.
+
+
+In our system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger. 
 
 | Pump | Primary Thermal Loop | Main Function |
 | :--- | :--- | :--- |
