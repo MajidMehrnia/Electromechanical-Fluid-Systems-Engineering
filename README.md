@@ -179,11 +179,11 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress. Detailed component-level models are developed for five distinct pump architectures:
 
-I. **Piston Pump** (Reciprocating / Axially Driven)
-II. **Diaphragm Pump** (Air-Operated / Mechanically Driven)
-III. **Gear Pump** (External / Internal)
-IV. **Peristaltic Pump** (Roller / Flexible Hose)
-V. **Centrifugal Pump** (Impeller / Dynamic BLDC)
+* **I. Piston Pump** (Reciprocating / Axially Driven)
+* **II. Diaphragm Pump** (Air-Operated / Mechanically Driven)
+* **III. Gear Pump** (External / Internal)
+* **IV. Peristaltic Pump** (Roller / Flexible Hose)
+* **V. Centrifugal Pump** (Impeller / Dynamic BLDC)
 
 ### I. Piston Pump (Reciprocating / Axially Driven)
 Constructed by coupling mechanical and hydro-mechanical domains:
