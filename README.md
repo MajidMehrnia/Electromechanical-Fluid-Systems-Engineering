@@ -177,7 +177,13 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 ## 3.2. Physical Pump Modeling
 
-This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress.
+This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress. Detailed component-level models are developed for five distinct pump architectures:
+
+I. **Piston Pump** (Reciprocating / Axially Driven)
+II. **Diaphragm Pump** (Air-Operated / Mechanically Driven)
+III. **Gear Pump** (External / Internal)
+IV. **Peristaltic Pump** (Roller / Flexible Hose)
+V. **Centrifugal Pump** (Impeller / Dynamic BLDC)
 
 ### I. Piston Pump (Reciprocating / Axially Driven)
 Constructed by coupling mechanical and hydro-mechanical domains:
@@ -192,6 +198,22 @@ Constructed by modeling the flexible diaphragm interface and fluid chamber:
 * **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping the diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
 * **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
 
+### III. Gear Pump (External / Internal)
+* **Gear Meshing Mechanism:** Uses paired `Rotary Hydro-Mechanical Transducer` (or `Rotary Hydromechanical Actuator`) blocks to model the volumetric displacement of gear meshing and trapped clearance volumes.
+* **Inter-Gear Leakage:** Uses `Hydraulic Gap` or `Capillary Tube` blocks to model radial and axial tip clearance leakages dependent on fluid viscosity and differential pressure.
+
+### IV. Peristaltic Pump (Roller / Flexible Hose)
+* **Cam/Roller Mechanism:** Combines `Rotary to Linear Motion` or `Cam and Follower` blocks to simulate the mechanical squeezing force exerted by rollers on the flexible hose.
+* **Flexible Tube Modeling:** Uses a `Variable Hydraulic Chamber` coupled with `Translational Spring` and `Translational Damper` blocks to capture hose elasticity, structural recovery, and dynamic deformation.
+* **Occlusion Behavior:** Models full or partial tube cross-section squeezing to simulate dynamic suction and non-backflow seals under roller pressure.
+
+### V. Centrifugal Pump (Impeller / Dynamic)
+* **Electromechanical Coupling:** Connects an `Electric Motor` (e.g., PMSM or BLDC drive) to the rotating pump shaft via a `Rotational Hydromechanical Transducer` to couple electrical, rotational mechanical, and fluid domains.
+* **Torque-to-Pressure Dynamics:** Models the fluid resistance torque ($T_m$) as a function of angular velocity ($\omega$) and volumetric flow rate ($Q$):
+  $$T_m = f(\omega, Q)$$
+* **Volute & Impeller Losses:** Incorporates `Local Resistance` and hydraulic pipe resistance elements to model volute casing pressure drops, impeller friction, and dynamic flow losses.
+
+
 ---
 
 ### Advanced Physical Effects & Phenomena Supported
@@ -204,7 +226,9 @@ Simscape Fluids accounts for complex fluid dynamics and non-linearities:
 * **Internal & External Leakage:** Incorporates clearance-based gap leakage models across pistons, seals, and valve seats.
 
 
-In our system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger. 
+In our system architecture, there are two pumps (P1 and P2) operating in separate coolant circuits. P1 (here named Motor_Pump) regulates the temperature of the electric motor and interfaces directly with the chiller loop, whereas P2 (here named Battery_Pump) provides thermal conditioning for the battery pack, DCDC converter, and onboard charger.  
+
+These pumps are electrically driven centrifugal pumps, commonly using BLDC motors with variable-speed control. Their flow rate is dynamically regulated by the vehicle’s thermal-management system according to battery, motor/inverter and coolant temperature requirements, operating conditions, and overall thermal load.
 
 | Pump | Primary Thermal Loop | Main Function |
 | :--- | :--- | :--- |
