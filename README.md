@@ -160,9 +160,7 @@ This section models BLDC Electric Water Pumps used in electric vehicle thermal m
 ---
 ## Modeling Positive Displacement Pumps
 
-Simscape (specifically using Simscape Fluids) enables high-fidelity physical modeling and simulation of various pump architectures, including positive displacement pumps such as **Piston Pumps** and **Diaphragm Pumps**.
-
-Depending on the engineering requirements, two primary modeling approaches can be applied in MATLAB/Simscape:
+Depending on the engineering requirements, two primary modeling approaches can be applied here:
 
 
 ## 3.1. Data-Driven Pump Modeling
