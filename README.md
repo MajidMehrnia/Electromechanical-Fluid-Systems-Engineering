@@ -170,7 +170,7 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 ## 3.2. Physical Pump Modeling
 
-The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture system behavior.
+The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups, coupling mechanical, hydraulic, and, where applicable, electrical domains to capture steady-state and transient system behavior.
 
 
 ## 3.2.1. Fixed Positive Displacement Pumps
