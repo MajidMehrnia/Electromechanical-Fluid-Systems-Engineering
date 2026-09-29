@@ -173,23 +173,23 @@ This approach is recommended when high-level system performance, efficiency, or 
 The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture system behavior.
 
 
-## I. Fixed Positive Displacement Pumps
+## 3.2.1. Fixed Positive Displacement Pumps
 
 **Gear Pump | Rotary Vane Pump | Screw Pump | Peristaltic Pump**
 
-### َA. Gear Pump (External / Internal)
+### َI. Gear Pump (External / Internal)
 * **Gear Meshing Mechanism:** Uses paired `Rotary Hydro-Mechanical Transducer` (or `Rotary Hydromechanical Actuator`) blocks to model the volumetric displacement of gear meshing and trapped clearance volumes.
 * **Inter-Gear Leakage:** Uses `Hydraulic Gap` or `Capillary Tube` blocks to model radial and axial tip clearance leakages dependent on fluid viscosity and differential pressure.
 
-### B. Rotary Vane Pump (Eccentric Rotor / Sliding Vanes)
+### II. Rotary Vane Pump (Eccentric Rotor / Sliding Vanes)
 * **Eccentric Chamber Dynamics:** Combines a `Rotational Hydro-Mechanical Transducer` with a `Variable Hydraulic Chamber` to model volume variation of sliding vanes rotating inside an eccentric stator ring.
 * **Vane Tip Clearance & Sealing:** Incorporates `Hydraulic Gap` elements to model dynamic leakage across sliding vane tips and side plates under centrifugal force and mechanical spring pre-loads.
 
-### C. Screw Pump (Twin-Screw / Helical Rotor)
+### III. Screw Pump (Twin-Screw / Helical Rotor)
 * **Helical Volume Engagement:** Uses `Rotary Hydro-Mechanical Transducer` elements to capture continuous, pulse-free volumetric fluid progression along intermeshing helical screws.
 * **Inter-Thread Leakage:** Models internal slip and clearance backflow using viscosity-dependent `Capillary Tube` and `Hydraulic Gap` blocks.
 
-### D. Peristaltic Pump (Roller / Flexible Hose)
+### IV. Peristaltic Pump (Roller / Flexible Hose)
 * **Cam/Roller Mechanism:** Combines `Rotary to Linear Motion` or `Cam and Follower` blocks to simulate the mechanical squeezing force exerted by rollers on the flexible hose.
 * **Flexible Tube Modeling:** Uses a `Variable Hydraulic Chamber` coupled with `Translational Spring` and `Translational Damper` blocks to capture hose elasticity, structural recovery, and dynamic deformation.
 * **Occlusion Behavior:** Models full or partial tube cross-section squeezing to simulate dynamic suction and non-backflow seals under roller pressure.
@@ -202,23 +202,23 @@ High physical fidelity due to direct, linear coupling between drive speed and di
 
 ---
 
-### II. Reciprocating & Variable-Displacement Positive-Displacement Pumps
+### 3.2.2. Reciprocating & Variable-Displacement Positive-Displacement Pumps
 
 **Piston Pump | Diaphragm Pump | Swashplate Axial Piston Pump**
 
-### E. Piston Pump (Reciprocating / Axially Driven)
+### V. Piston Pump (Reciprocating / Axially Driven)
 * **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
 * **Valving:** Two `Check Valve` blocks serving as Suction (Inlet) and Discharge (Outlet) check valves with defined cracking pressure and discharge coefficients.
 * **Displacement Chamber:** `Variable Hydraulic Chamber` (or `Translational Hydro-Mechanical Transducer`) to continuously evaluate fluid volume changes relative to piston stroke position:
   $$V(t) = V_0 + A_p \cdot x(t)$$
 
-### F. Diaphragm Pump (Air-Operated / Mechanically Driven)
+### VI. Diaphragm Pump (Air-Operated / Mechanically Driven)
 * **Actuation System:** Pneumatic cylinder (`Pneumatic Actuator`), mechanical cam, or electromechanical solenoid supplying displacement force to the diaphragm.
 * **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
 * **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
 
-### G. Swashplate Axial Piston Pump (Variable Displacement)
-* **Swashplate Kinematics:** Models piston stroke length as a function of swashplate tilt angle ($V_d = f(\alpha)$) using coupled `Rotary-to-Linear` transducers.
+### VII. Swashplate Axial Piston Pump (Variable Displacement)
+* **Swashplate Kinematics:** Models piston stroke length as a function of swashplate tilt angle $(V_d = f(\alpha))$ using coupled `Rotary-to-Linear` transducers.
 * **Pressure-Compensated Control:** Integrates a pilot-operated hydraulic control loop to dynamically vary swashplate orientation for system pressure regulation.
 
 **Validation**
@@ -229,11 +229,11 @@ Reciprocating check valve dynamics, fluid compressibility ($K$), and pressure/fl
 
 ---
 
-### III. Centrifugal Pumps
+### 3.2.3. Centrifugal Pumps
 
 **Electrically Driven Centrifugal Pump**
 
-### F. Centrifugal Pump (Impeller / Dynamic BLDC)
+### VIII. Centrifugal Pump (Impeller / Dynamic BLDC)
 * **Electromechanical Coupling:** Connects an `Electric Motor` (e.g., PMSM or BLDC drive) to the rotating pump shaft via a `Rotational Hydromechanical Transducer` to couple electrical, rotational mechanical, and fluid domains.
 * **Torque-to-Pressure Dynamics:** Models fluid resistance torque ($T_m$) as a function of angular velocity ($\omega$) and volumetric flow rate ($Q$):
   $$T_m = f(\omega, Q)$$
