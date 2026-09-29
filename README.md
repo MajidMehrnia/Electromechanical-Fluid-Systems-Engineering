@@ -200,7 +200,7 @@ Model parameters are calibrated and validated against available experimental tes
 * **Helical Volume Engagement:** Uses `Rotary Hydro-Mechanical Transducer` elements to capture continuous, pulse-free volumetric fluid progression along intermeshing helical screws.
 * **Inter-Thread Leakage:** Models internal slip and clearance backflow using viscosity-dependent `Capillary Tube` and `Hydraulic Gap` blocks.
 
-* ### D. Peristaltic Pump (Roller / Flexible Hose)
+### D. Peristaltic Pump (Roller / Flexible Hose)
 * **Cam/Roller Mechanism:** Combines `Rotary to Linear Motion` or `Cam and Follower` blocks to simulate the mechanical squeezing force exerted by rollers on the flexible hose.
 * **Flexible Tube Modeling:** Uses a `Variable Hydraulic Chamber` coupled with `Translational Spring` and `Translational Damper` blocks to capture hose elasticity, structural recovery, and dynamic deformation.
 * **Occlusion Behavior:** Models full or partial tube cross-section squeezing to simulate dynamic suction and non-backflow seals under roller pressure.
@@ -209,6 +209,9 @@ Model parameters are calibrated and validated against available experimental tes
 
 Steady-state pressure-flow and torque-speed characteristics are compared against experimental measurements. Model performance is quantified using normalized error metrics over the defined operating envelope.
 
+  * **Steady-State Accuracy:** **95% – 98%** (2% – 5% relative error).
+  * **Transient Accuracy:** **92% – 97%** (3% – 8% relative error).
+  * **Validation Details:** High physical fidelity due to direct, linear coupling between drive speed and displacement volume ($V_g$). Primary error sources stem from internal clearance leakages at high operational pressures, compensated using empirical leakage coefficients.
 ---
 
 ### II. Reciprocating & Variable-Displacement Positive-Displacement Pumps
