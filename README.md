@@ -175,11 +175,10 @@ This approach is recommended when high-level system performance, efficiency, or 
 * **Use Cases:** System-level hydraulic simulations, thermal-hydraulic balancing, controller design, and steady-state pressure/flow estimation without the computational overhead of dynamic valve cycling.
 
 
-## 3.2. Physical Pump Modeling
 
 ## 3.2. Physical Pump Modeling
 
-This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress. All eight pump architectures are implemented in Simscape Fluids across three primary classification groups, with dynamic fidelity validated against experimental test rig data:
+This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress. All pump architectures are implemented in Simscape Fluids across three primary classification groups, with dynamic fidelity validated against experimental test data:
 
 ---
 
