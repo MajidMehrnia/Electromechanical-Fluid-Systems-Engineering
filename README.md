@@ -207,43 +207,56 @@ Model parameters are calibrated and validated against available experimental tes
 
 **Validation**
 
-Steady-state pressure-flow and torque-speed characteristics are compared against experimental measurements. Model performance is quantified using normalized error metrics over the defined operating envelope.
+High physical fidelity due to direct, linear coupling between drive speed and displacement volume ($V_g$). Primary error sources stem from internal clearance leakages at high operational pressures, compensated using empirical leakage coefficients.
 
   * **Steady-State Accuracy:** **95% – 98%** (2% – 5% relative error).
   * **Transient Accuracy:** **92% – 97%** (3% – 8% relative error).
-  * **Validation Details:** High physical fidelity due to direct, linear coupling between drive speed and displacement volume ($V_g$). Primary error sources stem from internal clearance leakages at high operational pressures, compensated using empirical leakage coefficients.
+
 ---
 
 ### II. Reciprocating & Variable-Displacement Positive-Displacement Pumps
 
 **Piston | Diaphragm | Swashplate Axial Piston**
 
-| Pump Architecture | Physical Modeling Approach |
-|---|---|
-| **Piston Pump** | Converts rotary motion into reciprocating piston displacement. Chamber volume is represented as \(V(t)=V_0+A_p x(t)\), with instantaneous flow approximately related to piston velocity by \(Q(t)=A_p\dot{x}(t)\), subject to leakage, compressibility, and check-valve dynamics. |
-| **Diaphragm Pump** | Models diaphragm displacement and chamber-volume variation with inlet/outlet check-valve dynamics and diaphragm compliance. |
-| **Swashplate Axial Piston Pump** | Models variable piston stroke as a function of swashplate angle, \(V_d=f(\alpha)\), with displacement control coupled to the hydraulic operating condition. |
+### E. Piston Pump (Reciprocating / Axially Driven)
+* **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
+* **Valving:** Two `Check Valve` blocks serving as Suction (Inlet) and Discharge (Outlet) check valves with defined cracking pressure and discharge coefficients.
+* **Displacement Chamber:** `Variable Hydraulic Chamber` (or `Translational Hydro-Mechanical Transducer`) to continuously evaluate fluid volume changes relative to piston stroke position:
+  $$V(t) = V_0 + A_p \cdot x(t)$$
+
+### F. Diaphragm Pump (Air-Operated / Mechanically Driven)
+* **Actuation System:** Pneumatic cylinder (`Pneumatic Actuator`), mechanical cam, or electromechanical solenoid supplying displacement force to the diaphragm.
+* **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
+* **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
+
+### G. Swashplate Axial Piston Pump (Variable Displacement)
+* **Swashplate Kinematics:** Models piston stroke length as a function of swashplate tilt angle ($V_d = f(\alpha)$) using coupled `Rotary-to-Linear` transducers.
+* **Pressure-Compensated Control:** Integrates a pilot-operated hydraulic control loop to dynamically vary swashplate orientation for system pressure regulation.
 
 **Validation**
+Reciprocating check valve dynamics, fluid compressibility ($K$), and pressure/flow ripple introduce dynamic non-linearities during stroke transitions. For Swashplate architectures, transient fidelity depends heavily on pilot control valve tuning.
 
-Transient behavior is evaluated against measured pressure/flow ripple, piston-cycle response, and steady-state operating points where experimental data are available.
+  * **Steady-State Accuracy:** **93% – 97%** (3% – 7% relative error).
+  * **Transient Accuracy:** **85% – 92%** (8% – 15% relative error).
+
 
 ---
 
-### III. Dynamic & Centrifugal Pumps
+### III. Centrifugal Pumps
 
 **Electrically Driven Centrifugal Pump**
 
-| Modeling Aspect | Physical Modeling Approach |
-|---|---|
-| **Electromechanical Coupling** | Couples a **BLDC/PMSM drive model** to the pump shaft to capture motor speed, torque, and hydraulic-load interaction. |
-| **Pump Performance** | Represents pressure rise and hydraulic torque as functions of flow rate and shaft speed: \(\Delta p=f(Q,\omega)\), \(T_{hyd}=f(Q,\omega)\). |
-| **Performance Maps** | Parameterizes the pump using measured or manufacturer-provided \(H-Q\), power-flow, and efficiency characteristics. |
-| **Hydraulic Losses** | Uses calibrated hydraulic resistance and pipe elements to represent system-level pressure losses and flow resistance. |
+### F. Centrifugal Pump (Impeller / Dynamic BLDC)
+* **Electromechanical Coupling:** Connects an `Electric Motor` (e.g., PMSM or BLDC drive) to the rotating pump shaft via a `Rotational Hydromechanical Transducer` to couple electrical, rotational mechanical, and fluid domains.
+* **Torque-to-Pressure Dynamics:** Models fluid resistance torque ($T_m$) as a function of angular velocity ($\omega$) and volumetric flow rate ($Q$):
+  $$T_m = f(\omega, Q)$$
+* **Volute & Impeller Losses:** Incorporates `Local Resistance` and hydraulic pipe resistance elements to model volute casing pressure drops, impeller friction, and dynamic flow losses.
 
 **Validation**
+Highly accurate (>95%) near nominal operating points when driven by empirical pump performance maps. Accuracy degrades slightly at extreme off-design conditions (near stall or choke regions) where 1D lumped-parameter assumptions reach structural limits.
 
-Steady-state validation is performed against measured \(H-Q\), torque-speed, and efficiency characteristics. Transient validation evaluates the response to speed commands, hydraulic-load changes, and system-level flow/pressure dynamics.
+  * **Steady-State Accuracy:** **90% – 96%** (4% – 10% relative error based on $H-Q$ and $\eta-Q$ curves).
+  * **Transient Accuracy:** **85% – 90%** (10% – 15% relative error).
 
 ---
 
