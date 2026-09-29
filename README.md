@@ -153,6 +153,19 @@ This Simscape Electrical motor and drive block is parameterized at the system le
 
 This section models BLDC Electric Water Pumps used in electric vehicle thermal management systems to supply mechanical energy to fluid networks. The model accounts for losses due to leakage flow and friction torque. The pump can operate in both forward and reverse directions depending on shaft rotation, and can also operate in motor mode to drive the shaft.
 
+### Simscape Fluids Pump Blocks
+
+| Block | Simscape Fluids Model | Description |
+|---|---|---|
+| [![Fixed-Displacement Pump (IL)](https://www.mathworks.com/help/hydro/ref/fixeddisplacement_pump_il_ic.png)](https://www.mathworks.com/help/hydro/ref/fixeddisplacementpumpil.html) | [**Fixed-Displacement Pump (IL)**](https://www.mathworks.com/help/hydro/ref/fixeddisplacementpumpil.html) | Fixed-displacement pump in an isothermal liquid system |
+| [![Variable-Displacement Pump (IL)](https://www.mathworks.com/help/hydro/ref/variabledisplacement_pump_il_ic.png)](https://www.mathworks.com/help/hydro/ref/variabledisplacementpumpil.html) | [**Variable-Displacement Pump (IL)**](https://www.mathworks.com/help/hydro/ref/variabledisplacementpumpil.html) | Variable-displacement pump in an isothermal liquid network |
+| [![Pressure-Compensated Pump (IL)](https://www.mathworks.com/help/hydro/ref/pressurecompensated_pump_il_ic.png)](https://www.mathworks.com/help/hydro/ref/pressurecompensatedpumpil.html) | [**Pressure-Compensated Pump (IL)**](https://www.mathworks.com/help/hydro/ref/pressurecompensatedpumpil.html) | Constant-pressure, variable-displacement pump in an isothermal liquid network |
+| [![Centrifugal Pump (IL)](https://www.mathworks.com/help/hydro/ref/centrifugal_pump_il_ic.png)](https://www.mathworks.com/help/hydro/ref/centrifugalpumpil.html) | [**Centrifugal Pump (IL)**](https://www.mathworks.com/help/hydro/ref/centrifugalpumpil.html) | Centrifugal pump in an isothermal liquid network |
+| [![Jet Pump (IL)](https://www.mathworks.com/help/hydro/ref/jet_pump_il_ic.png)](https://www.mathworks.com/help/hydro/ref/jetpumpil.html) | [**Jet Pump (IL)**](https://www.mathworks.com/help/hydro/ref/jetpumpil.html) | Liquid-liquid jet pump in an isothermal liquid network |
+| [![Swash Plate](https://www.mathworks.com/help/hydro/ref/swash_plate_ic.png)](https://www.mathworks.com/help/hydro/ref/swashplate.html) | [**Swash Plate**](https://www.mathworks.com/help/hydro/ref/swashplate.html) | Swash plate in a single-piston, isothermal axial-piston pump |
+| [![Valve Plate Orifice (IL)](https://www.mathworks.com/help/hydro/ref/valve_plate_orifice_il_ic.png)](https://www.mathworks.com/help/hydro/ref/valveplateorificeil.html) | [**Valve Plate Orifice (IL)**](https://www.mathworks.com/help/hydro/ref/valveplateorificeil.html) | Variable orifice in an isothermal axial-piston machine |
+
+
 Depending on the engineering requirements, two primary modeling approaches can be applied here:
 
 
