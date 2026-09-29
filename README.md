@@ -186,7 +186,7 @@ Model parameters are calibrated and validated against available experimental tes
 
 ## I. Fixed-Displacement Positive-Displacement Pumps
 
-**Gear Pump | Rotary Vane Pump| Screw Pump | Peristaltic Pump**
+**Gear Pump | Rotary Vane Pump | Screw Pump | Peristaltic Pump**
 
 ### َA. Gear Pump (External / Internal)
 * **Gear Meshing Mechanism:** Uses paired `Rotary Hydro-Mechanical Transducer` (or `Rotary Hydromechanical Actuator`) blocks to model the volumetric displacement of gear meshing and trapped clearance volumes.
@@ -209,14 +209,13 @@ Model parameters are calibrated and validated against available experimental tes
 
 High physical fidelity due to direct, linear coupling between drive speed and displacement volume ($V_g$). Primary error sources stem from internal clearance leakages at high operational pressures, compensated using empirical leakage coefficients.
 
-  * **Steady-State Accuracy:** **95% – 98%** (2% – 5% relative error).
   * **Transient Accuracy:** **92% – 97%** (3% – 8% relative error).
 
 ---
 
 ### II. Reciprocating & Variable-Displacement Positive-Displacement Pumps
 
-**Piston | Diaphragm | Swashplate Axial Piston**
+**Piston Pump | Diaphragm Pump | Swashplate Axial Piston Pump**
 
 ### E. Piston Pump (Reciprocating / Axially Driven)
 * **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
@@ -236,7 +235,6 @@ High physical fidelity due to direct, linear coupling between drive speed and di
 **Validation**
 Reciprocating check valve dynamics, fluid compressibility ($K$), and pressure/flow ripple introduce dynamic non-linearities during stroke transitions. For Swashplate architectures, transient fidelity depends heavily on pilot control valve tuning.
 
-  * **Steady-State Accuracy:** **93% – 97%** (3% – 7% relative error).
   * **Transient Accuracy:** **85% – 92%** (8% – 15% relative error).
 
 
