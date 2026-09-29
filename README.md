@@ -173,11 +173,11 @@ This approach is recommended when high-level system performance, efficiency, or 
 The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups, coupling mechanical, hydraulic, and, where applicable, electrical domains to capture steady-state and transient system behavior.
 
 
-## 3.2.1. Fixed Positive Displacement Pumps
+### 3.2.1. Fixed Positive Displacement Pumps
 
 **Gear Pump | Rotary Vane Pump | Screw Pump | Peristaltic Pump**
 
-### َI. Gear Pump (External / Internal)
+### I. Gear Pump (External / Internal)
 * **Gear Meshing Mechanism:** Uses paired `Rotary Hydro-Mechanical Transducer` (or `Rotary Hydromechanical Actuator`) blocks to model the volumetric displacement of gear meshing and trapped clearance volumes.
 * **Inter-Gear Leakage:** Uses `Hydraulic Gap` or `Capillary Tube` blocks to model radial and axial tip clearance leakages dependent on fluid viscosity and differential pressure.
 
