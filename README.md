@@ -168,13 +168,10 @@ This approach is recommended when high-level system performance, efficiency, or 
 * **Use Cases:** System-level hydraulic simulations, thermal-hydraulic balancing, controller design, and steady-state pressure/flow estimation without the computational overhead of dynamic valve cycling.
 
 
-
 ## 3.2. Physical Pump Modeling
 
 The modeling framework represents different pump architectures using **Simscape Fluids components and custom physical subsystems** across three classification groups. The models couple mechanical, hydraulic, and, where applicable, electrical domains to capture system behavior.
 
-
----
 
 ## I. Fixed Positive Displacement Pumps
 
