@@ -161,7 +161,7 @@ Simscape (specifically using Simscape Fluids) enables high-fidelity physical mod
 Depending on the engineering requirements, two primary modeling approaches can be applied in MATLAB/Simscape:
 
 
-## 3.1. Data-Driven Modeling
+## 3.1. Data-Driven Pump Modeling
 
 This approach is recommended when high-level system performance, efficiency, or control loop testing is the primary objective, without requiring inner mechanical dynamics.
 
@@ -173,7 +173,7 @@ This approach is recommended when high-level system performance, efficiency, or 
 * **Use Cases:** System-level hydraulic simulations, thermal-hydraulic balancing, controller design, and steady-state pressure/flow estimation without the computational overhead of dynamic valve cycling.
 
 
-## 3.2. Physical & Structural (Component-Level) Modeling
+## 3.2. Physical Pump Modeling
 
 This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress.
 
@@ -192,7 +192,7 @@ Constructed by modeling the flexible diaphragm interface and fluid chamber:
 
 ---
 
-## Advanced Physical Effects & Phenomena Supported
+### Advanced Physical Effects & Phenomena Supported
 
 Simscape Fluids accounts for complex fluid dynamics and non-linearities:
 
