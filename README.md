@@ -13,9 +13,13 @@ A key objective of this work is to develop an **[AI-Enabled Engineering Value & 
 1. [System Architecture](#01-system-architecture)
 2. [Motor & Drive](#02-motor--drive)
 3. [Pumps](#03-pumps)
+   - 3.1. [Data-Driven Pump Modeling](#31-data-driven-pump-modeling)
+   - 3.2. [Physical Pump Modeling](#32-physical-pump-modeling)
 4. [Compressor](#04-compressor)
+   - 4.1. [Map-Based Simulation](#41-map-based-simulation)
+   - 4.2. [3D-to-1D Scroll Compressor Model](#42-3d-to-1d-scroll-compressor-model)
 5. [Control](#05-control)  
-6. [Fluid-Electromechanical Co-simulation ](#06-fluid-electromechanical-co-simulation)
+6. [Fluid-Electromechanical Co-simulation](#06-fluid-electromechanical-co-simulation)
 7. [ECAD / MCAD / DFM Integration](#07-ecad--mcad--dfm-integration)
 8. [AI/ML Modeling](#08-aiml-modeling)
 9. [NPI Flowchart](#09-npi-flowchart)
@@ -177,14 +181,14 @@ This approach is recommended when high-level system performance, efficiency, or 
 
 This approach is suitable for analyzing high-frequency dynamic behavior, pressure and flow ripple, valve dynamics, structural vibrations, or mechanical stress.
 
-### A. Piston Pump (Reciprocating / Axially Driven)
+### I. Piston Pump (Reciprocating / Axially Driven)
 Constructed by coupling mechanical and hydro-mechanical domains:
 * **Mechanism Drive:** `Rotary to Linear Motion` or `Crank-Slider` mechanism connected to a `Translational Hydromechanical Actuator` to convert drive-shaft torque into piston stroke.
 * **Valving:** Two `Check Valve` blocks serving as Suction (Inlet) and Discharge (Outlet) check valves with defined cracking pressure and discharge coefficients.
 * **Displacement Chamber:** `Variable Hydraulic Chamber` (or `Translational Hydro-Mechanical Transducer`) to continuously evaluate fluid volume changes relative to piston stroke position:
   $$V(t) = V_0 + A_p \cdot x(t)$$
 
-### B. Diaphragm Pump (Air-Operated / Mechanically Driven)
+### II. Diaphragm Pump (Air-Operated / Mechanically Driven)
 Constructed by modeling the flexible diaphragm interface and fluid chamber:
 * **Actuation System:** Pneumatic cylinder (`Pneumatic Actuator`), mechanical cam, or electromechanical solenoid supplying displacement force to the diaphragm.
 * **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping the diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
@@ -218,12 +222,12 @@ In our system architecture, there are two pumps (P1 and P2) operating in separat
 
 ## 04. Compressor
 
-### Map-Based Simulation
+## 4.1 Map-Based Simulation
 The system uses a scroll compressor, initially represented by a map-based compressor model in MATLAB/Simulink for system-level simulation. To achieve higher modeling fidelity and physical accuracy, a geometry-based, 3D-to-1D discretized compressor model developed in GT-SUITE is integrated to capture the compressor's detailed thermodynamic and flow behavior.
 <br><br>
 <img width="1918" height="799" alt="1" src="https://github.com/user-attachments/assets/9ee1f1d5-bd09-4db4-8c6a-d1a2df495bec" />
 <br><br>
-### 3D-to-1D Scroll Compressor Model
+## 4.2 3D-to-1D Scroll Compressor Model
 This model implements a detailed 3D-to-1D discretized multi-chamber approach directly derived from the 3D CAD geometry of the scroll compressor, developed in GT-SUITE, rather than relying on empirical performance maps.
 The physical compression volume between the stationary and orbiting scrolls is discretized into discrete transient pockets (Chambers 1a–4a and 1b–4b) whose volume and porting areas dynamically evolve as a function of the orbital angle. By explicitly resolving flank and radial leakage paths between adjacent chambers, the model accurately predicts internal recirculation losses, thermal interactions, and discharge valve dynamics with high fidelity while maintaining 1D computational efficiency.
 <img width="856" height="500" alt="GT_Scroll" src="https://github.com/user-attachments/assets/f7d13a90-0bb6-4a4a-8dc9-9b23ac900a69" />
