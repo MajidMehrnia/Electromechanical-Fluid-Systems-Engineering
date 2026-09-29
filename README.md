@@ -217,8 +217,9 @@ High physical fidelity due to direct, linear coupling between drive speed and di
 * **Diaphragm & Chamber Interface:** `Translational Hydro-Mechanical Transducer` or `Hydromechanical Chamber` mapping diaphragm displacement to effective volumetric fluid displacement while accounting for diaphragm stiffness/compliance.
 * **Fluid Routing:** `Check Valve` blocks placed at the inlet and outlet ports to govern unidirectional fluid flow.
 
-### VII.Linear Pump (Linear Diaphragm / Electromagnetic Drive):
-Couples an AC electromagnetic drive using a `Reluctance Actuator` or `Translational Electromechanical Transducer` directly to a diaphragm chamber, bypassing rotational mechanical links.
+### VII. Linear Pump (Linear Diaphragm / Electromagnetic Drive):
+Unlike conventional diaphragm pumps that use a rotating motor and crankshaft to convert torque into linear motion, a Linear Pump eliminates all rotating components. 
+* To achieve high-fidelity modeling in Simscape, a direct electro-magneto-mechanical domain coupling is implemented using a `Reluctance Actuator` or `Translational Electromechanical Transducer` driven by AC power, which interfaces directly with a `Variable Hydraulic Chamber` (or `Pneumatic Chamber`). Incorporates a mass-spring-damper assembly (`Translational Mass`, `Spring`, and `Damper`) to capture mechanical resonance behavior, non-linear diaphragm compliance, and high-frequency `Check Valve` dynamics under pneumatic or fluid compression domains.
 
 ### VIII. Swashplate Axial Piston Pump (Variable Displacement)
 * **Swashplate Kinematics:** Models piston stroke length as a function of swashplate tilt angle $(V_d = f(\alpha))$ using coupled `Rotary-to-Linear` transducers.
